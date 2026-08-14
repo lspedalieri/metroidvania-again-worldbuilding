@@ -8,14 +8,15 @@ func init() -> void:
 
 # what happens when we enter this state
 func enter() -> void:
-	player.add_debug_indicator(Color.LIME_GREEN)
+	#player.add_debug_indicator(Color.LIME_GREEN)
+	player.animation_player.play("jump")
 	player.velocity.y = -player.jump_velocity
 	pass
 
 
 # what happens when we exit this state
 func exit() -> void:
-	player.add_debug_indicator(Color.YELLOW)
+	#player.add_debug_indicator(Color.YELLOW)
 	pass
 
 # what happens when an input is pressed

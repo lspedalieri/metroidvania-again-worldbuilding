@@ -31,7 +31,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_rgyib"]
 resource_name = "crouch"
-length = 0.2
+length = 0.19999999999999998
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -107,9 +107,6 @@ _data = {
 &"run": SubResource("Animation_2ieo8")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
-size = Vector2(16, 3)
-
 [node name="Player" type="CharacterBody2D" unique_id=917685447]
 collision_layer = 0
 collision_mask = 3
@@ -133,6 +130,7 @@ script = ExtResource("4_qjkh3")
 [node name="Fall" type="Node" parent="States" unique_id=1651073412]
 unique_name_in_owner = true
 script = ExtResource("5_g6k8r")
+fall_gravity_multiplier = null
 
 [node name="Crouch" type="Node" parent="States" unique_id=467670927]
 unique_name_in_owner = true
@@ -165,13 +163,9 @@ text = "label"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="OneWayPlatformRaycast" type="RayCast2D" parent="." unique_id=1538041896]
+target_position = Vector2(0, 4)
+collision_mask = 2
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1594383836]
 libraries/ = SubResource("AnimationLibrary_ebec5")
-
-[node name="OneWayPlatformShapecast" type="ShapeCast2D" parent="." unique_id=1523662093]
-position = Vector2(0, -1)
-enabled = false
-shape = SubResource("RectangleShape2D_g4v7s")
-target_position = Vector2(0, 4)
-max_results = 12
-collision_mask = 2

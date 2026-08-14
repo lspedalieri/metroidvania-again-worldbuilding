@@ -9,6 +9,7 @@ func init() -> void:
 # what happens when we enter this state
 func enter() -> void:
 	player.coyote_timer = player.coyote_time
+	player.animation_player.play("idle")
 	pass
 
 
