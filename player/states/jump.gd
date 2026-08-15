@@ -10,6 +10,7 @@ func init() -> void:
 func enter() -> void:
 	#player.add_debug_indicator(Color.LIME_GREEN)
 	player.animation_player.play("jump")
+	player.animation_player.pause()
 	player.velocity.y = -player.jump_velocity
 	pass
 
@@ -28,6 +29,7 @@ func handle_input( event: InputEvent) -> PlayerState:
 
 # what happens each process tick in this state
 func process(_delta: float) -> PlayerState:
+	set_jump_frame()
 	return next_state
 
 # what happens each physics_process tick in this state
@@ -35,8 +37,13 @@ func physics_process(_delta: float) -> PlayerState:
 	if player.is_on_floor():
 		return idle
 	elif player.velocity.y >= 0:
-		player
+		#player
 		return fall
 	#consente di cambiare il movimento in aria
 	player.velocity.x = player.direction.x * player.move_speed
 	return next_state
+
+func set_jump_frame() -> void:
+	var frame: float = remap(player.velocity.y, -player.jump_velocity, 0.0, 0.0, 0.5)
+	player.animation_player.seek(frame, true)
+	pass

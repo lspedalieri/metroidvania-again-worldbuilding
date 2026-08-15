@@ -31,10 +31,11 @@ func handle_input( _event: InputEvent) -> PlayerState:
 	return next_state
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func process(_delta: float) -> PlayerState:
 	player.coyote_timer -= _delta
 	player.jump_buffer_timer -= _delta
-	pass
+	set_jump_frame()
+	return next_state
 
 
 # what happens each physics_process tick in this state
@@ -47,3 +48,8 @@ func physics_process(_delta: float) -> PlayerState:
 	#consente di cambiare il movimento in aria
 	player.velocity.x = player.direction.x * player.move_speed
 	return next_state
+
+func set_jump_frame() -> void:
+	var frame: float = remap(player.velocity.y, 0.0, player.max_fall_velocity, 0.5, 1.0)
+	player.animation_player.seek(frame, true)
+	pass

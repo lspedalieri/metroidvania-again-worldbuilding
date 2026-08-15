@@ -35,6 +35,7 @@ var gravity_multiplier : float = 1.0
 @export var coyote_time: float = 0.2
 @export var jump_buffer_time: float = 0.2
 @export var deceleration_rate: float = 10
+@export var max_fall_velocity: float = 600
 #endregion
 
 func _ready() -> void:
@@ -47,8 +48,12 @@ func _process( _delta: float) -> void:
 
 func _physics_process( _delta: float) -> void:
 	velocity.y += gravity * _delta * gravity_multiplier
+	velocity.y = clampf(velocity.y, -1000.0, max_fall_velocity)
 	move_and_slide()
 	change_state(current_state.physics_process(_delta))
+	#if is_on_floor():
+		#rotate(get_floor_normal().angle())
+		#$Label.text = str(get_floor_normal())	
 	pass
 
 func _unhandled_input(_event: InputEvent) -> void:
