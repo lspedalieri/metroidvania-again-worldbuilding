@@ -11,6 +11,8 @@ func init() -> void:
 	pass
 
 func enter() -> void:
+	player.animation_player.play("jump")
+	player.animation_player.pause()
 	player.gravity_multiplier = fall_gravity_multiplier
 	if player.previous_state == jump:
 		player.coyote_timer = 0
@@ -20,6 +22,8 @@ func enter() -> void:
 
 func exit() -> void:
 	player.gravity_multiplier = 1.0
+	player.jump_buffer_timer = 0
+	pass
 
 # what happens when an input is pressed
 func handle_input( _event: InputEvent) -> PlayerState:
@@ -41,7 +45,8 @@ func process(_delta: float) -> PlayerState:
 # what happens each physics_process tick in this state
 func physics_process(_delta: float) -> PlayerState:
 	if player.is_on_floor():
-		player.add_debug_indicator()
+		#player.add_debug_indicator()
+		#if player.jump_buffer_timer > 0 and Input.is_action_pressed("jump"):
 		if player.jump_buffer_timer > 0:
 			return jump
 		return idle

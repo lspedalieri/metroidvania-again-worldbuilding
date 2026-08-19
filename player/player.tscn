@@ -9,10 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://ch2uj27kjhuek" path="res://player/sprites/hero.png" id="7_boad6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
-size = Vector2(18, 48)
+size = Vector2(8, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6k8r"]
-size = Vector2(18, 28.5)
+size = Vector2(8, 28.5)
 
 [sub_resource type="Animation" id="Animation_boad6"]
 length = 0.001
@@ -110,11 +110,15 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(16, 3)
 
-[node name="Player" type="CharacterBody2D" unique_id=917685447]
-collision_layer = 0
+[node name="Player" type="CharacterBody2D" unique_id=917685447 groups=["Player"]]
+z_index = 1
+collision_layer = 16
 collision_mask = 3
+floor_constant_speed = true
+floor_snap_length = 3.0
 script = ExtResource("1_oul6g")
 move_speed = 250.0
+coyote_time = 0.125
 
 [node name="States" type="Node" parent="." unique_id=1509350902]
 
@@ -175,3 +179,6 @@ shape = SubResource("RectangleShape2D_g4v7s")
 target_position = Vector2(0, 4)
 max_results = 12
 collision_mask = 2
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=621295415]
+position = Vector2(0, -37)
