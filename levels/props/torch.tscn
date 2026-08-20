@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://be4kh2fyilv3p"]
+
+[ext_resource type="Texture2D" uid="uid://vnw5j4s44qtq" path="res://levels/tilesets/sprites/forgotten_forest_example_tileset.png" id="1_cxyc4"]
+[ext_resource type="Script" uid="uid://cg6kab6miy41t" path="res://general/scripts/light_flicker.gd" id="2_dnf12"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnf12"]
+atlas = ExtResource("1_cxyc4")
+region = Rect2(512, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hl1ks"]
+atlas = ExtResource("1_cxyc4")
+region = Rect2(544, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkwqv"]
+atlas = ExtResource("1_cxyc4")
+region = Rect2(576, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jgic"]
+atlas = ExtResource("1_cxyc4")
+region = Rect2(608, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrye1"]
+atlas = ExtResource("1_cxyc4")
+region = Rect2(640, 256, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnf12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hl1ks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkwqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jgic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrye1")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_boad6"]
+offsets = PackedFloat32Array(0, 0.3275862, 0.6465517, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.7607843, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cxyc4"]
+gradient = SubResource("Gradient_boad6")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="Torch" type="AnimatedSprite2D" unique_id=1703892390]
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+autoplay = "default"
+frame_progress = 0.63131434
+offset = Vector2(0, -32)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1308731759]
+color = Color(1, 0.8, 0.5058824, 1)
+texture = SubResource("GradientTexture2D_cxyc4")
+script = ExtResource("2_dnf12")
+flicker_intensity = 0.2
+flicker_frequency = 0.1
